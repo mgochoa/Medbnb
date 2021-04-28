@@ -8,8 +8,6 @@ router.get('/', async (req, res, next) => {
 
   const users = await models.user.findAll();
 
-  console.log(users);
-
   res.status(200).json(users);
 });
 
@@ -24,7 +22,7 @@ router.post('/', async (req, res, next) => {
 
   const newUser = await models.user.create(user);
 
-  res.status(201).json({ status: "Sucess", message: `New user` })
+  res.status(201).json({ status: "Sucess", message: "New user id: "+ newUser.id })
 
 })
 
