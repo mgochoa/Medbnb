@@ -1,4 +1,4 @@
-const { DataTypes, Model } = require('sequelize');
+const { DataTypes, Model, Sequelize } = require('sequelize');
 
 const PROTECTED_ATTRIBUTES = ['password']
 
@@ -23,13 +23,17 @@ module.exports = (sequelize) => {
 
         // The following specification of the 'id' attribute could be omitted
         // since it is the default.
+        id: {
+            allowNull: false,
+            type: DataTypes.UUIDV4,
+            defaultValue: Sequelize.UUIDV4,
+            primaryKey: true,
+            unique: true,
+        },
         username: {
             allowNull: false,
-            type: DataTypes.STRING(36),
+            type: DataTypes.STRING,
             unique: true,
-            set() {
-                return
-            }
         },
         name: {
             allowNull: false,
@@ -44,6 +48,7 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
         },
         created_at: {
+            allowNull: true,
             type: DataTypes.DATE
         },
         username: {
@@ -76,3 +81,11 @@ module.exports = (sequelize) => {
         })
 
 };
+
+
+
+
+
+
+
+

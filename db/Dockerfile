@@ -1,15 +1,14 @@
 FROM mysql:latest
 
-MANTAINER mochoa1127@gmail.com
+LABEL maintainer="mochoa1127@gmail.com"
 
-RUN mkdir /mysql_scripts
+ENV MYSQL_ROOT_PASSWORD backend
+ENV MYSQL_DATABASE medbnb
+ENV MYSQL_USER backend
+ENV MYSQL_PASSWORD backend
 
-COPY . /mysql_scripts
-
-
-ENV 
-
-
+WORKDIR /mysql_scripts
+ADD *.sql /docker-entrypoint-initdb.d
 
 EXPOSE 3306
 
