@@ -1,8 +1,6 @@
-import { withBinaryUUID } from "sequelize-binary-uuid";
+const { DataTypes, Model, Sequelize } = require('sequelize');
 
-const { DataTypes, Model } = require('sequelize');
-
-const PROTECTED_ATTRIBUTES = ['password', 'id']
+const PROTECTED_ATTRIBUTES = ['password']
 
 // We export a function that defines the model.
 // This function will automatically receive as parameter the Sequelize connection object.
@@ -21,10 +19,17 @@ class User extends Model {
 
 
 module.exports = (sequelize) => {
-    User.init(withBinaryUUID({
+    User.init({
 
         // The following specification of the 'id' attribute could be omitted
         // since it is the default.
+        id: {
+            allowNull: false,
+            type: DataTypes.UUIDV4,
+            defaultValue: Sequelize.UUIDV4,
+            primaryKey: true,
+            unique: true,
+        },
         username: {
             allowNull: false,
             type: DataTypes.STRING,
@@ -43,6 +48,7 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
         },
         created_at: {
+            allowNull: true,
             type: DataTypes.DATE
         },
         username: {
@@ -54,7 +60,7 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT
         },
         rate: {
-            allowNull: false,
+            allowNull: true,
             type: DataTypes.REAL,
         },
         languages: {
@@ -62,22 +68,11 @@ module.exports = (sequelize) => {
             type: DataTypes.JSON,
         },
         picture: {
-            allowNull: false,
+            allowNull: true,
             type: DataTypes.TEXT,
         }
     },
         {
-            primaryID: "id", // default
-            virtualID: "uuid", // default
-            field: {
-                // optionally provide extra parameters to the
-                // `primaryID` binary field
-                primaryKey: true
-                // primaryKey: true is required to make it a
-                // primaryKey!
-            }
-        })
-        , {
             sequelize,
             tableName: "user",
             createdAt: "created_at",

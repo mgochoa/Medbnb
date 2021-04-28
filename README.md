@@ -2,7 +2,16 @@ medbnb
 ---
 
 
-Learning copy of airbnb
+Learning copy of Airbnb
 
+
+# Backend
+
+Done with express.js
+
+
+# Frontend
+
+Planned to be done with Vite and React or Vue
 
 
