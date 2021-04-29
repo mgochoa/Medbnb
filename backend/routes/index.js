@@ -2,8 +2,6 @@ import express from 'express'
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.send("medbnb API")
-});
+router.get('/', (req, res, next) => res.send("medbnb API"));
 
 module.exports = router;

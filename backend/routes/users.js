@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-const { models, model } = require('../sequelize');
+const { models } = require('../sequelize');
 const sha1 = require('sha1');
 
 /* GET users listing. */
@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
 
   const newUser = await models.user.create(user);
 
-  res.status(201).json({ status: "Sucess", message: "New user id: "+ newUser.id })
+  res.status(201).json({ status: "Sucess", message: "New user id: " + newUser.id })
 
 })
 

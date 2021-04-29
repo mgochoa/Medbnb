@@ -1,15 +1,12 @@
 import express from 'express'
 import morgan from 'morgan'
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-//var propertiesRouter = require('./routes/properties');
-
-
-const PORT = 3000
+import propertiesRoutes from './routes/properties';
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
 
 
-var app = express();
+const app = express();
+
 
 app.use(morgan('dev'));
 app.use(express.json());
@@ -17,8 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/properties', propertiesRoutes);
 
-//app.use('/properties', propertiesRouter)
 
 
 module.exports = app;
